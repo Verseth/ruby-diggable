@@ -15,6 +15,10 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 Include it in a class to make it *diggable*.
+The `Diggable` module implements the `dig` method
+so that it calls public methods.
+
+Here's a simple example.
 
 ```rb
 class MyClass
