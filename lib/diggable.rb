@@ -4,6 +4,28 @@ require_relative 'diggable/version'
 
 # Include in a class to give it the `#dig` method.
 # It's implemented so that it calls public methods.
+#
+# Example:
+#
+#       class MyClass
+#         include Diggable
+#
+#         attr_accessor :foo, :bar
+#
+#         def initialize(foo:, bar:)
+#           @foo = foo
+#           @bar = bar
+#         end
+#       end
+#
+#       obj = MyClass.new foo: [1, 2 ,3], bar: { some: { inner: :value } }
+#       obj.dig(:foo, 0) #=> 1
+#       obj.dig(:bar, :some, :inner) #=> :value
+#
+#       hash = { my_obj: MyClass.new(foo: 1, bar: ['hi mom', 'hi dad']) }
+#       hash.dig(:my_obj, :foo) #=> 1
+#       hash.dig(:my_obj, :bar, 1) #=> 'hi dad'
+#
 module Diggable
   # Extracts the nested value specified by the sequence of key objects by calling `dig` at each step,
   # returning `nil` if any intermediate step is `nil`.
